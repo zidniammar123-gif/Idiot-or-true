@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sound Effect Player</title>
     <style>
-        /* Gaya untuk mengatur posisi tombol di tengah halaman */
         body {
             display: flex;
             flex-direction: column;
@@ -22,48 +21,49 @@
             color: #333;
         }
 
-        /* PERBAIKAN: Membuat tombol menjadi sangat besar dan menarik */
         .btn-sound {
             padding: 25px 60px;
             font-size: 24px;
             font-weight: bold;
             color: white;
-            background-color: #007bff; /* Warna biru */
+            background-color: #28a745; /* Diubah jadi warna hijau sukses */
             border: none;
-            border-radius: 50px; /* Membuat sudut tombol melengkung bulat */
+            border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3); /* Efek bayangan */
-            transition: all 0.2s ease; /* Animasi halus */
+            box-shadow: 0 8px 15px rgba(40, 167, 69, 0.3);
+            transition: all 0.2s ease;
         }
 
-        /* Efek saat kursor mouse berada di atas tombol */
         .btn-sound:hover {
-            background-color: #0056b3; /* Biru lebih gelap */
-            box-shadow: 0 15px 20px rgba(0, 123, 255, 0.4);
-            transform: translateY(-2px); /* Tombol sedikit naik */
+            background-color: #218838;
+            box-shadow: 0 15px 20px rgba(40, 167, 69, 0.4);
+            transform: translateY(-2px);
         }
 
-        /* Efek saat tombol ditekan/diklik */
         .btn-sound:active {
-            transform: translateY(1px); /* Tombol sedikit turun */
-            box-shadow: 0 5px 10px rgba(0, 123, 255, 0.2);
+            transform: translateY(1px);
+            box-shadow: 0 5px 10px rgba(40, 167, 69, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <h3>Putar vidio</h3>
+    <h3>Putar Efek Suara Internal</h3>
     
-    <!-- Tombol Pemicu yang sudah diperbesar -->
+    <!-- Tombol Pemicu -->
     <button class="btn-sound" onclick="mainkanSuara()">📢 Mainkan Efek Suara</button>
 
     <script>
+        // PERBAIKAN: Masukkan nama file mp3 Anda yang ada di folder yang sama
+        var audio = new Audio("suaraku.mp3");
+
         function mainkanSuara() {
-            var urlSuara = "https://www.myinstants.com/en/instant/fahhhhhhhhhhhhhh-3525/?utm_source=copy&utm_medium=share";
+            // Reset ke awal agar bisa diklik berkali-kali tanpa macet
+            audio.currentTime = 0; 
             
-            var audio = new Audio(urlSuara);
             audio.play().catch(function(error) {
-                console.log("Gagal memutar:", error);
+                console.log("Gagal memutar suara:", error);
+                alert("Gagal memutar! Pastikan nama file MP3 di kode sudah sama persis dengan yang di GitHub.");
             });
         }
     </script>
