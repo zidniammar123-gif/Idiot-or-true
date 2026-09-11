@@ -1,1 +1,25 @@
-hello world 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sound Effect Player</title>
+</head>
+<body>
+
+    <h3>Putar Efek Suara Tanpa Buka Link</h3>
+    
+    <!-- Tombol Pemicu -->
+    <button onclick="mainkanSuara()">Mainkan Efek Suara</button>
+
+    <script>
+        function mainkanSuara() {
+            // Masukkan link langsung file audio di bawah ini
+            var urlSuara = "https://www.myinstants.com/en/instant/fahhhhhhhhhhhhhh-3525/?utm_source=copy&utm_medium=share";
+            
+            var audio = new Audio(urlSuara);
+            audio.play(); // Memicu suara agar berbunyi
+        }
+    </script>
+
+</body>
+</html>
