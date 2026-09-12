@@ -14,17 +14,36 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #f0f2f5;
+            gap: 20px; /* Memberikan jarak antar tombol agar rapi */
         }
         .btn-sound {
             padding: 25px 60px;
             font-size: 24px;
             font-weight: bold;
             color: white;
-            background-color: #28a745;
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+        /* Desain untuk Tombol Pertama (Hijau) */
+        .btn-hijau {
+            background-color: #28a745;
             box-shadow: 0 8px 15px rgba(40, 167, 69, 0.3);
+        }
+        .btn-hijau:hover {
+            background-color: #218838;
+        }
+        /* Desain untuk Tombol Kedua (Biru) */
+        .btn-biru {
+            background-color: #007bff;
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+        }
+        .btn-biru:hover {
+            background-color: #0069d9;
+        }
+        .btn-sound:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -32,25 +51,38 @@
 
     <h3>Putar Efek Suara GitHub</h3>
     
-    <!-- Tombol Pemicu -->
-    <button class="btn-sound" onclick="mainkanSuara()">📢 Mainkan Efek Suara</button>
+    <!-- Tombol 1: Hijau -->
+    <button class="btn-sound btn-hijau" onclick="mainkanSuara(1)">📢 Efek Suara 1</button>
+
+    <!-- Tombol 2: Biru (Tombol Baru) -->
+    <button class="btn-sound btn-biru" onclick="mainkanSuara(2)">🎵 Efek Suara 2</button>
 
     <script>
         // PENTING: Ganti tulisan di bawah ini sesuai nama asli file Anda di GitHub
-        var namaFileSuara = "suaraKlik.mp3"; 
+        var suara1 = new Audio("suaraKlik.mp3"); 
+        var suara2 = new Audio("suaraKedua.mp3"); // <-- Ganti dengan nama file suara kedua Anda
 
-        var audio = new Audio(namaFileSuara);
+        function mainkanSuara(nomorTombol) {
+            var audioTarget;
 
-        function mainkanSuara() {
-            audio.currentTime = 0; 
-            
-            audio.play().then(() => {
-                console.log("Suara berhasil berbunyi!");
-            }).catch(function(error) {
-                // Jika gagal, browser akan memunculkan pop-up error agar kita tahu penyebabnya
-                alert("Gagal memutar! Error: " + error.message + 
-                      "\n\nTips: Pastikan file '" + namaFileSuara + "' sudah diupload ke GitHub dengan nama & huruf yang SAMA PERSIS.");
-            });
+            // Memilih audio mana yang diputar berdasarkan tombol yang diklik
+            if (nomorTombol === 1) {
+                audioTarget = suara1;
+            } else if (nomorTombol === 2) {
+                audioTarget = suara2;
+            }
+
+            // Putar audio yang dipilih
+            if (audioTarget) {
+                audioTarget.currentTime = 0; 
+                
+                audioTarget.play().then(() => {
+                    console.log("Suara " + nomorTombol + " berhasil berbunyi!");
+                }).catch(function(error) {
+                    alert("Gagal memutar Suara " + nomorTombol + "! Error: " + error.message + 
+                          "\n\nTips: Pastikan file suara sudah diupload ke GitHub dengan nama & huruf yang SAMA PERSIS.");
+                });
+            }
         }
     </script>
 
